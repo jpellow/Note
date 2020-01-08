@@ -35,6 +35,8 @@ app.get("/api/notes", function (req, res) {
 });
 //POST
 
+// function writeJSON(obj){
+// }
 app.post("/api/notes", function (req, res) {
 
     var newNote = req.body;
@@ -48,16 +50,35 @@ app.post("/api/notes", function (req, res) {
         fs.writeFileSync("./db/db.json", JSON.stringify(json), 'utf-8')
         console.log('Saved!');
     })
-
-
-    // fs.appendFile('./db/db.json', newNote, function (err) {
-    //     if (err) throw err;
-    //     console.log('Saved!');
-    // });
-    // return res.send(newNote);
+    deleteTest();
 });
 
+function deleteTest(){
+    fs.readFile('./db/db.json', function (err, data) {
+        var json = JSON.parse(data)
+        json.splice(1, 1)
+        for(i=0; i < json.length; i ++){
+            json[i].id = i; 
+        }
+        fs.writeFileSync("./db/db.json", JSON.stringify(json), 'utf-8')
+        console.log('DELETED!');
+    })
+
+}
+
 app.delete("/api/notes/:id", function (req, res) {
+    //take in the ID of the URL and delete the corresponding ID of the object
+
+    fs.readFile('./db/db.json', function (err, data) {
+        var json = JSON.parse(data)
+        //this need to splce the ID of the chosen record.
+        json.splice(id, 1)
+        for(i=0; i < json.length; i ++){
+            json[i].id = i; 
+        }
+        fs.writeFileSync("./db/db.json", JSON.stringify(json), 'utf-8')
+        console.log('Saved!');
+    })
 
 })
 //start server
