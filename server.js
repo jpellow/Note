@@ -22,15 +22,16 @@ app.get("*", function (req, res) {
 });
 
 app.get("/api/notes", function (req, res) {
+    console.log("HI");
     // res.sendFile(path.join(__dirname, "tables.html"))
-    var notes;
-    fs.readFile('./db/db.json', function (err, data) {
+    fs.readFileSync('./db/db.json', function (err, data) {
         if (err) {
             throw err;
         }
-        notes = data;
+        console.log(data);
+        return res.json(data);
     })
-    return res.json(notes);
+    console.log(data);
 });
 //POST
 
@@ -41,6 +42,9 @@ app.post("/api/notes", function (req, res) {
     fs.readFile('./db/db.json', function (err, data) {
         var json = JSON.parse(data)
         json.push(newNote)
+        for(i=0; i < json.length; i ++){
+            json[i].id = i;
+        }
         fs.writeFileSync("./db/db.json", JSON.stringify(json), 'utf-8')
         console.log('Saved!');
     })
