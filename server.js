@@ -72,7 +72,7 @@ app.delete("/api/notes/:id", function (req, res) {
     fs.readFile('./db/db.json', function (err, data) {
         var json = JSON.parse(data)
         //this need to splce the ID of the chosen record.
-        json.splice(id, 1)
+        // json.splice(id, 1)
         for(i=0; i < json.length; i ++){
             json[i].id = i; 
         }
