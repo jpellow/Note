@@ -1,3 +1,15 @@
+# READ ME
+This node program will load the Note Taker HTML and allow you to navigate to the different pages. On the Notes page you can add a not and save it to the db.json but it will not display on te page due to some JS errors on the provided JS code.
+
+Due to these errors I am unable to test the delete button since the note list does not get populated.
+
+
+
+
+
+
+
+
 # Unit 11 Express Homework: Note Taker
 
 ## Description
